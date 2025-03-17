@@ -22,42 +22,6 @@ public class ActivitePratiqueN3Application  implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        Patient patient = new Patient();
-        patient.setId(null);
-        patient.setNom("bbb");
-        patient.setDateNaissance(new Date(System.currentTimeMillis()));
-        patient.setMalade(false);
-        patient.setScore(43);
-        patientRepository.save(patient);
-        Patient patient1 = Patient.builder()
-                .nom("Ali")
-                .dateNaissance(new Date(System.currentTimeMillis()))
-                .score(20)
-                .malade(true)
-                .build();
-        patientRepository.save(patient1);
-        Patient patient2 = Patient.builder()
-                .nom("CCC")
-                .dateNaissance(new Date(System.currentTimeMillis()))
-                .score(70)
-                .malade(true)
-                .build();
-        patientRepository.save(patient2);
 
-
-        Patient patient5 = Patient.builder()
-                .nom("AAA")
-                .dateNaissance(new Date(System.currentTimeMillis()))
-                .score(52)
-                .malade(true)
-                .build();
-        Patient patient4 = Patient.builder()
-                .nom("SARA")
-                .dateNaissance(new Date(System.currentTimeMillis()))
-                .score(20)
-                .malade(true)
-                .build();
-        patientRepository.save(patient5);
-        patientRepository.save(patient4);
     }
 }

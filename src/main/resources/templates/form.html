@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Patients</title>
+    <link rel="stylesheet" href="/webjars/bootstrap/5.3.3/css/bootstrap.min.css">
+</head>
+<body>
+<form method="post" th:action="@{/save}">
+    <div class="form-group">
+        <label>Nom :</label>
+        <input type="text" class="form-control" name="nom" th:value="${patient?.nom}">
+
+    </div>
+
+    <div class="form-group">
+        <label>Date de naissance :</label>
+        <input type="date" class="form-control" name="dateNaissance" th:value="${patient?.dateNaissance}">
+
+    </div>
+
+    <div class="form-group">
+        <label>Score :</label>
+        <input type="number" class="form-control" name="score" th:value="${patient?.score}">
+
+    </div>
+
+    <div class="checkbox">
+        <label>
+            <input type="checkbox" name="malade" th:checked="${patient?.malade}"> Malade
+        </label>
+    </div>
+    <button type="submit" class="btn btn-primary">Soumettre</button>
+</form>
+</body>
+</html>
