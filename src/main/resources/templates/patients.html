@@ -31,7 +31,8 @@
                     <th th:text="${p.malade}"></th>
                     <th th:text="${p.score}"></th>
                     <th>
-                        <a class="btn btn-danger btn-sm">supprimer</a>
+                        <a onclick="javascript:return confirm('etes vous sure?')"
+                           th:href="@{delete(id=${p.id},Keyword=${Keyword},page=${currentPage})}" class="btn btn-danger btn-sm">supprimer</a>
                     </th>
                 </tr>
 

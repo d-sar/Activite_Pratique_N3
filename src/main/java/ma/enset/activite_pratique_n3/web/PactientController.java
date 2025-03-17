@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 @AllArgsConstructor
 public class PactientController {
+    private final PatientRepository patientRepository;
     private PatientRepository PatientRepository;
     @GetMapping("/index")
     public String index(Model model ,
@@ -27,5 +28,10 @@ public class PactientController {
         model.addAttribute("currentPage",pagePatients.getNumber());
         model.addAttribute("Keyword",kw);
         return "patients";
+    }
+    @GetMapping("/delete")
+    public String delete(Long id , String Keyword,int page){
+        patientRepository.deleteById(id);
+        return "redirect:/index?page="+page+"Keyword"+Keyword; // redireeger vers /delete
     }
 }
