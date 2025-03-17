@@ -9,6 +9,11 @@
     <div class="card">
         <div class ="card-header">la liste des Patients</div>
         <div class ="card-body">
+            <form method="get" th:action="@{/index}">
+                <label>Keyword:</label>
+                <input type="text" name="keyword" th:value="${Keyword}">
+                <button type="submit" class="btn btn-info">Chercher</button>
+            </form>
             <table class="table">
                 <thead>
                 <tr>
@@ -34,8 +39,8 @@
             </table>
             <ul class="nav nav-pills">
                 <li th:each="page,status:${pages}" >
-                    <a th:href="@{/index(page=${status.index})}"
-                       th:class="${currentPage==status.index? 'btn btn-info' : 'btn btn-outline-info'}"
+                    <a th:href="@{/index(page=${status.index},Keyword=${Keyword})}"
+                       th:class="${currentPage==status.index? 'btn btn-info ms-1' : 'btn btn-outline-info m-1'}"
                        th:text="${status.index}"></a>
                 </li>
             </ul>
