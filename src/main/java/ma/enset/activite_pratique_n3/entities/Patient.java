@@ -13,8 +13,10 @@ import java.time.LocalDate;
 public class Patient {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    //@NotEmpty @size(min = 4,max = 20)
     private String nom;
     private LocalDate  dateNaissance;
     private boolean malade;
+    //@ min(10)
     private int score;
 }
