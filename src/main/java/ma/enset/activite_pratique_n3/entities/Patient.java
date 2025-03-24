@@ -19,4 +19,44 @@ public class Patient {
     private boolean malade;
     //@ min(10)
     private int score;
+
+    public Long getId() {
+        return id;
+    }
+
+    public String getNom() {
+        return nom;
+    }
+
+    public LocalDate getDateNaissance() {
+        return dateNaissance;
+    }
+
+    public boolean isMalade() {
+        return malade;
+    }
+
+    public int getScore() {
+        return score;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+
+    public void setDateNaissance(LocalDate dateNaissance) {
+        this.dateNaissance = dateNaissance;
+    }
+
+    public void setMalade(boolean malade) {
+        this.malade = malade;
+    }
+
+    public void setScore(int score) {
+        this.score = score;
+    }
 }

@@ -19,7 +19,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @Controller
 @AllArgsConstructor
 public class PatientController {
-    private  PatientRepository patientRepository;
+    private final PatientRepository patientRepository;
     @GetMapping("/index")
     public String index(Model model ,
                         @RequestParam(name = "page", defaultValue = "0") int page,

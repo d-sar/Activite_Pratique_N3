@@ -1,13 +1,16 @@
 package ma.enset.activite_pratique_n3;
 
+import lombok.Data;
 import ma.enset.activite_pratique_n3.entities.Patient;
 import ma.enset.activite_pratique_n3.repository.PatientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.data.repository.Repository;
 
 
+import java.sql.DatabaseMetaData;
 import java.sql.Date;
 
 @SpringBootApplication

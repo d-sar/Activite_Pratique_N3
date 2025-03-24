@@ -1,10 +1,14 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="template.html">
+
 <head>
     <title>Patients</title>
-    <link rel="stylesheet" href="/webjars/bootstrap/5.3.3/css/bootstrap.min.css">
 </head>
 <body>
+<div layout:fragment="content">
+
 <div class="p-3">
     <div class="card">
         <div class="card-header ">La liste des Patients</div>
@@ -44,7 +48,7 @@
                     <td>
                         <a  class="btn btn-danger"
                             th:href="@{editPatient(id=${p.id})}">
-                            <i class="bi bi-pencil"></i>
+                            <i class="bi bi-pencil">EDIT</i>
                         </a>
                     </td>
 
@@ -55,11 +59,12 @@
                 <li th:each="page, status : ${pages}">
                     <a th:href="@{/index(page=${status.index}, keyword=${keyword})}"
                        th:class="${currentPage == status.index ? 'btn btn-info ms-1' : 'btn btn-outline-info ms-1'}"
-                       th:text="${status.index + 1}">Edit</a>
+                       th:text="${status.index + 1}"></a>
                 </li>
             </ul>
         </div>
     </div>
+</div>
 </div>
 </body>
 </html>
