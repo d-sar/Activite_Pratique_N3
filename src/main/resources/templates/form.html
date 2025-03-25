@@ -1,35 +1,52 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
+    <meta charset="UTF-8">
     <title>Patients</title>
     <link rel="stylesheet" href="/webjars/bootstrap/5.3.3/css/bootstrap.min.css">
+    <script src="/webjars/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
-<form method="post" th:action="@{/admin/save}">
-    <div class="form-group">
-        <label>Nom :</label>
-        <input type="text" class="form-control" name="nom" th:value="${patient?.nom}">
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <div class="card shadow">
+                <div class="card-header text-center bg-primary text-white">
+                    <h4>Formulaire Patient</h4>
+                </div>
+                <div class="card-body">
+                    <form method="post" th:action="@{/admin/save}">
+                        <div class="mb-3">
+                            <label class="form-label">Nom :</label>
+                            <input type="text" class="form-control" name="nom" th:value="${patient?.nom}" required>
+                        </div>
 
+                        <div class="mb-3">
+                            <label class="form-label">Date de naissance :</label>
+                            <input type="date" class="form-control" name="dateNaissance" th:value="${patient?.dateNaissance}" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Score :</label>
+                            <input type="number" class="form-control" name="score" th:value="${patient?.score}" min="0" required>
+                        </div>
+
+                        <div class="form-check mb-3">
+                            <input class="form-check-input" type="checkbox" name="malade" id="malade" th:checked="${patient?.malade}">
+                            <label class="form-check-label" for="malade">Malade</label>
+                        </div>
+
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-success">Soumettre</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="text-center mt-3">
+                <a th:href="@{/admin/patients}" class="btn btn-secondary">Retour</a>
+            </div>
+        </div>
     </div>
-
-    <div class="form-group">
-        <label>Date de naissance :</label>
-        <input type="date" class="form-control" name="dateNaissance" th:value="${patient?.dateNaissance}">
-
-    </div>
-
-    <div class="form-group">
-        <label>Score :</label>
-        <input type="number" class="form-control" name="score" th:value="${patient?.score}">
-
-    </div>
-
-    <div class="checkbox">
-        <label>
-            <input type="checkbox" name="malade" th:checked="${patient?.malade}"> Malade
-        </label>
-    </div>
-    <button type="submit" class="btn btn-primary">Soumettre</button>
-</form>
+</div>
 </body>
 </html>

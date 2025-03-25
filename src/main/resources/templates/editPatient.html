@@ -1,44 +1,70 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="template.html"
->
+      layout:decorate="template.html">
 <head>
     <meta charset="UTF-8">
-    <title>Patients Patients</title>
+    <title>Edit Patients</title>
+    <link rel="stylesheet" href="/webjars/bootstrap/5.3.3/css/bootstrap.min.css">
+    <script src="/webjars/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
 <div layout:fragment="content">
-    <div class="p-3">
-        <form method="post" th:action="@{/admin/save}">
-            <div class="mb-3 mt-3">
-                <label for="id" class="form-label">ID:</label>
-                <label th:text="${patient.id}"></label>
-                <input type="hidden" class="form-control" id="id" placeholder="ID" name="id" th:value="${patient.id}">
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <div class="card shadow">
+                    <div class="card-header bg-primary text-white text-center">
+                        <h4>Formulaire Patient</h4>
+                    </div>
+                    <div class="card-body">
+                        <form method="post" th:action="@{/admin/save}">
+                            <!-- Hidden ID Field -->
+                            <div class="mb-3">
+                                <label for="id" class="form-label">ID:</label>
+                                <label th:text="${patient.id}"></label>
+                                <input type="hidden" class="form-control" id="id" name="id" th:value="${patient.id}">
+                            </div>
+
+                            <!-- Name Field -->
+                            <div class="mb-3">
+                                <label for="nom" class="form-label">Nom:</label>
+                                <input type="text" class="form-control" id="nom" placeholder="Nom" name="nom" th:value="${patient.nom}">
+                                <span class="text-danger" th:errors="${patient.nom}"></span>
+                            </div>
+
+                            <!-- Date of Birth Field -->
+                            <div class="mb-3">
+                                <label for="dateNaissance" class="form-label">Date de Naissance:</label>
+                                <input type="date" class="form-control" id="dateNaissance" name="dateNaissance" th:value="${patient.dateNaissance}">
+                            </div>
+
+                            <!-- Score Field -->
+                            <div class="mb-3">
+                                <label for="score" class="form-label">Score:</label>
+                                <input type="number" class="form-control" id="score" name="score" th:value="${patient.score}" min="0">
+                                <span class="text-danger" th:errors="${patient.score}"></span>
+                            </div>
+
+                            <!-- Malade Checkbox -->
+                            <div class="form-check mb-3">
+                                <input class="form-check-input" type="checkbox" name="malade" id="malade" th:checked="${patient.malade}">
+                                <label class="form-check-label" for="malade">Malade</label>
+                            </div>
+
+                            <!-- Submit Button -->
+                            <div class="d-grid">
+                                <button type="submit" class="btn btn-success">Sauvegarder</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <!-- Back Button -->
+                <div class="text-center mt-3">
+                    <a th:href="@{/admin/patients}" class="btn btn-secondary">Retour</a>
+                </div>
             </div>
-            <div class="mb-3 mt-3">
-                <label for="nom" class="form-label">Nom:</label>
-                <input type="text" class="form-control" id="nom" placeholder="Nom" name="nom" th:value="${patient.nom}">
-                <span class="text-danger" th:errors="${patient.nom}"></span>
-            </div>
-            <div class="mb-3">
-                <label for="dateNaissance" class="form-label">Date Naissance:</label>
-                <input type="date" class="form-control" id="dateNaissance" placeholder="Date Naissance"
-                       name="dateNaissance" th:value="${patient.dateNaissance}">
-            </div>
-            <div class="mb-3 mt-3">
-                <label for="score" class="form-label">Score:</label>
-                <input type="text" class="form-control" id="score" placeholder="Score"
-                       name="score" th:value="${patient.score}">
-                <span class="text-danger" th:errors="${patient.score}" th:value="${patient.malade}"></span>
-            </div>
-            <div class="form-check mb-3">
-                <label class="form-check-label">
-                    <input class="form-check-input" type="checkbox" name="remember"> Malade
-                </label>
-            </div>
-            <button type="submit" class="btn btn-primary">Save</button>
-        </form>
+        </div>
     </div>
 </div>
 </body>

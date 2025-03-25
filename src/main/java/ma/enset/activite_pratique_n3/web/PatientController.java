@@ -5,6 +5,7 @@ import ma.enset.activite_pratique_n3.entities.Patient;
 import ma.enset.activite_pratique_n3.repository.PatientRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -33,16 +34,19 @@ public class PatientController {
         return "patients";
     }
     @GetMapping("/admin/delete")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public String delete(@RequestParam Long id , String keyword,int page){
         patientRepository.deleteById(id);
         return "redirect:/user/index?page=" + page + "&keyword=" + keyword;// redireeger vers /delete
     }
     @GetMapping("/admin/form")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public String showForm(Model model) {
         model.addAttribute("patient", new Patient());
         return "form";  // Nom du fichier du formulaire
     }
     @PostMapping("/admin/save")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public String savePatient(@ModelAttribute  Patient patient, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
         System.out.println("Tentative d'ajout du patient : " + patient);
 
@@ -58,6 +62,7 @@ public class PatientController {
     }
 
     @GetMapping("/admin/editPatient")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public String editPatient(@RequestParam (name = "id") Long id, Model model) {
        Patient patient = patientRepository.findById(id).get();
        model.addAttribute("patient", patient);

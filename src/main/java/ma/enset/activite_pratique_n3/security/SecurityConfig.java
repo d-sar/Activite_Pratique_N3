@@ -28,11 +28,17 @@ public InMemoryUserDetailsManager inMemoryUserDetailsManager(PasswordEncoder pas
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
         return httpSecurity
-                .formLogin(Customizer.withDefaults())
-                .authorizeHttpRequests(ar->ar.requestMatchers("/deletePatient/**").hasRole("ADMIN"))
-                .authorizeHttpRequests(ar->ar.requestMatchers("/admin/**").hasRole("ADMIN"))
-                .authorizeHttpRequests(ar->ar.requestMatchers("/user/**").hasRole("USER"))
-                .authorizeHttpRequests(ar->ar.anyRequest().authenticated())
+                .formLogin(form -> form
+                        .loginPage("/login") // Custom login page URL
+                        .permitAll() // Allow everyone to access the login page
+                )
+                .authorizeHttpRequests(ar-> ar.requestMatchers("/webjars/**").permitAll())
+                .authorizeHttpRequests(ar -> ar.requestMatchers("/deletePatient/**").hasRole("ADMIN"))
+                .authorizeHttpRequests(ar -> ar.requestMatchers("/admin/**").hasRole("ADMIN"))
+                .authorizeHttpRequests(ar -> ar.requestMatchers("/user/**").hasRole("USER"))
+                .authorizeHttpRequests(ar -> ar.anyRequest().authenticated())
+                .exceptionHandling(eh -> eh.accessDeniedPage("/notAuthorized"))
                 .build();
     }
+
 }
