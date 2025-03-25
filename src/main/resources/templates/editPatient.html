@@ -10,7 +10,7 @@
 <body>
 <div layout:fragment="content">
     <div class="p-3">
-        <form method="post" th:action="@{save}">
+        <form method="post" th:action="@{/admin/save}">
             <div class="mb-3 mt-3">
                 <label for="id" class="form-label">ID:</label>
                 <label th:text="${patient.id}"></label>

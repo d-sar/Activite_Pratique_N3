@@ -20,7 +20,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @AllArgsConstructor
 public class PatientController {
     private final PatientRepository patientRepository;
-    @GetMapping("/index")
+    @GetMapping("/user/index")
     public String index(Model model ,
                         @RequestParam(name = "page", defaultValue = "0") int page,
                         @RequestParam(name = "size", defaultValue = "5") int size,
@@ -32,17 +32,17 @@ public class PatientController {
         model.addAttribute("keyword", keyword);
         return "patients";
     }
-    @GetMapping("/delete")
+    @GetMapping("/admin/delete")
     public String delete(@RequestParam Long id , String keyword,int page){
         patientRepository.deleteById(id);
-        return "redirect:/index?page=" + page + "&keyword=" + keyword;// redireeger vers /delete
+        return "redirect:/user/index?page=" + page + "&keyword=" + keyword;// redireeger vers /delete
     }
-    @GetMapping("/form")
+    @GetMapping("/admin/form")
     public String showForm(Model model) {
         model.addAttribute("patient", new Patient());
         return "form";  // Nom du fichier du formulaire
     }
-    @PostMapping("/save")
+    @PostMapping("/admin/save")
     public String savePatient(@ModelAttribute  Patient patient, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
         System.out.println("Tentative d'ajout du patient : " + patient);
 
@@ -54,10 +54,10 @@ public class PatientController {
         patientRepository.save(patient);
         System.out.println("Patient ajouté avec succès !");
         redirectAttributes.addFlashAttribute("message", "Patient ajouté avec succès !");
-        return "redirect:/index";
+        return "redirect:/user/index";
     }
 
-    @GetMapping("/editPatient")
+    @GetMapping("/admin/editPatient")
     public String editPatient(@RequestParam (name = "id") Long id, Model model) {
        Patient patient = patientRepository.findById(id).get();
        model.addAttribute("patient", patient);
@@ -65,6 +65,6 @@ public class PatientController {
     }
     @GetMapping("/")
     public String home(){
-        return "redirect:/index";
+        return "redirect:/user/index";
     }
 }

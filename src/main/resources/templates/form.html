@@ -5,7 +5,7 @@
     <link rel="stylesheet" href="/webjars/bootstrap/5.3.3/css/bootstrap.min.css">
 </head>
 <body>
-<form method="post" th:action="@{/save}">
+<form method="post" th:action="@{/admin/save}">
     <div class="form-group">
         <label>Nom :</label>
         <input type="text" class="form-control" name="nom" th:value="${patient?.nom}">
