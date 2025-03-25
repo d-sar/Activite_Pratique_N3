@@ -63,4 +63,8 @@ public class PatientController {
        model.addAttribute("patient", patient);
        return "editPatient";
     }
+    @GetMapping("/")
+    public String home(){
+        return "redirect:/index";
+    }
 }
