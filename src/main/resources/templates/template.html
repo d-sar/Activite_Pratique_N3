@@ -20,7 +20,7 @@
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Patients</a>
                 <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" th:href="@{/admin/form}">Nouveau</a></li>
+                    <li th:if="${#authorization.expression('hasRole(''ADMIN'')')}"><a class="dropdown-item" th:href="@{/admin/form}">Nouveau</a></li>
                     <li><a class="dropdown-item" th:href="@{/user/index}">Chercher</a></li>
                 </ul>
             </li>
@@ -34,7 +34,7 @@
                     <li>
                         <form  methode ="post" th:action="@{/logout}">
                             <button class="dropdown-item" type="submit"> Logout</button>
-                        <form/>
+                        </form>
                     </li>
                     <li><a class="dropdown-item" href="#">Profile</a></li>
                 </ul>
