@@ -31,13 +31,14 @@ public InMemoryUserDetailsManager inMemoryUserDetailsManager(PasswordEncoder pas
                 .formLogin(form -> form
                         .loginPage("/login") // Custom login page URL
                         .permitAll() // Allow everyone to access the login page
+                        .defaultSuccessUrl("/user/index", true)
                 )
                 .authorizeHttpRequests(ar-> ar.requestMatchers("/webjars/**").permitAll())
                 .authorizeHttpRequests(ar -> ar.requestMatchers("/deletePatient/**").hasRole("ADMIN"))
                 .authorizeHttpRequests(ar -> ar.requestMatchers("/admin/**").hasRole("ADMIN"))
                 .authorizeHttpRequests(ar -> ar.requestMatchers("/user/**").hasRole("USER"))
                 .authorizeHttpRequests(ar -> ar.anyRequest().authenticated())
-                .exceptionHandling(eh -> eh.accessDeniedPage("/notAuthorized"))
+                .exceptionHandling(eh -> eh.accessDeniedPage("/NotAuthorized"))
                 .build();
     }
 
