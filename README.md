@@ -1,15 +1,22 @@
-# Projet de gestion des patients - Spring Boot, Spring MVC & Thymeleaf
+# 🏥 Projet de Gestion des Patients - Spring Boot & Thymeleaf
+![Spring Boot](https://img.shields.io/badge/Spring_Boot-3.x-green?logo=spring)
+![Java](https://img.shields.io/badge/Java-23-blue?logo=java)
+![Thymeleaf](https://img.shields.io/badge/Thymeleaf-3.1-white?logo=thymeleaf)
+
 ## Description
 
 Cette application Web JEE permet de gérer une liste de patients, effectuer des recherches par mot-clé, et exécuter des actions administratives telles que la suppression et l'édition des patients. Elle est basée sur Spring Boot, Spring MVC, Spring Data JPA, Thymeleaf, et utilise une base de données H2.
-## Fonctionnalités
 
-- Affichage de la liste des patients
-- Recherche par mot-clé
-- Suppression de patients (accessible uniquement aux utilisateurs avec le rôle ADMIN)
-- Modification des informations d'un patient (accessible uniquement aux utilisateurs avec le rôle ADMIN)
-- Pagination des résultats
-- Utilisation de templates Thymeleaf pour l'interface utilisateur
+## ✨Fonctionnalités
+
+| Fonctionnalité | Description | Accès |
+|----------------|-------------|-------|
+| 👥 Liste des patients | Affichage paginé de tous les patients | Tous utilisateurs |
+| 🔍 Recherche | Filtrage par nom ou mot-clé | Tous utilisateurs |
+| 🗑️ Suppression | Suppression sécurisée des dossiers | Rôle ADMIN |
+| ✏️ Édition | Mise à jour des informations patients | Rôle ADMIN |
+| ➕ Ajout | Création de nouveaux dossiers | Rôle ADMIN |
+| 🔐 Sécurité | Authentification et autorisation | Spring Security |
   
 ### Technologies utilisées
 
