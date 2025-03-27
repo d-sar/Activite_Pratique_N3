@@ -34,23 +34,18 @@ Une application web complète pour la gestion des patients avec des fonctionnali
   - ![MySQL](https://img.shields.io/badge/-MySQL-4479A1?logo=mysql)
   
 ## 🔐 Authentification en Mémoire
-Le système utilise **Spring Security** avec une authentification en mémoire (in-memory) préconfigurée :
-    ```java
-        @Bean
-        public InMemoryUserDetailsManager userDetailsService() {
-          UserDetails admin = User.withUsername("admin")
-                  .password(passwordEncoder().encode("admin123"))
-                  .roles("ADMIN")
-                  .build();
-          
-          UserDetails user = User.withUsername("user")
-                  .password(passwordEncoder().encode("user123"))
-                  .roles("USER")
-                  .build();
-                  
-          return new InMemoryUserDetailsManager(admin, user);
-      }
 
+Le système utilise **Spring Security** avec une authentification en mémoire (in-memory) préconfigurée :
+
+        ```java
+        @Bean
+        public InMemoryUserDetailsManager inMemoryUserDetailsManager(PasswordEncoder passwordEncoder){
+          String encodedPassword = passwordEncoder.encode("1234");
+          return new InMemoryUserDetailsManager(
+              User.withUsername("user1").password(encodedPassword).roles("USER").build(),
+              User.withUsername("admin").password(encodedPassword).roles("USER","ADMIN").build()
+          );
+        }
 ## 🚀 Installation
 
 1. Clonez ce dépôt sur votre machine locale :
