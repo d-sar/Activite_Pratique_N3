@@ -36,7 +36,6 @@ Une application web complète pour la gestion des patients avec des fonctionnali
 ## 🔐 Authentification en Mémoire
 
 Le système utilise **Spring Security** avec une authentification en mémoire (in-memory) préconfigurée :
-     ```java
      
         @Bean
         public InMemoryUserDetailsManager inMemoryUserDetailsManager(PasswordEncoder passwordEncoder){
