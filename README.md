@@ -18,23 +18,29 @@ Cette application Web JEE permet de gérer une liste de patients, effectuer des 
 | ➕ Ajout | Création de nouveaux dossiers | Rôle ADMIN |
 | 🔐 Sécurité | Authentification et autorisation | Spring Security |
   
-### Technologies utilisées
+## 🛠️ Technologies Utilisées
 
-- Java 23
-- Spring Boot 3
-- Spring MVC
-- Spring Data JPA
-- Spring security
-- Thymeleaf
-- Base de données ( H2, MySQL)
-- Maven ou Gradle pour la gestion des dépendances  
-- Bootstrap (pour l'interface utilisateur)
+- **Backend**: 
+  - ![Spring Boot](https://img.shields.io/badge/-Spring_Boot_3-6DB33F?logo=springboot)
+  - ![Spring Security](https://img.shields.io/badge/-Spring_Security-6DB33F?logo=springsecurity)
+  - ![JPA/Hibernate](https://img.shields.io/badge/-JPA/Hibernate-59666C?logo=hibernate)
 
-## Installation
+- **Frontend**:
+  - ![Thymeleaf](https://img.shields.io/badge/-Thymeleaf-005F0F?logo=thymeleaf)
+  - ![Bootstrap](https://img.shields.io/badge/-Bootstrap_5-7952B3?logo=bootstrap)
+
+- **Base de données**:
+  - ![H2](https://img.shields.io/badge/-H2_Database-1E6C93?logo=h2)
+  - ![MySQL](https://img.shields.io/badge/-MySQL-4479A1?logo=mysql)
+
+## 🚀 Installation
 
 1. Clonez ce dépôt sur votre machine locale :
    ```bash
    git clone https://github.com/d-sar/Activite_Pratique_N3
+2. Se rendre dans le dossier du projet
+   ```bash
+    cd Activite_Pratique_N3
    
 ## Usage
 
@@ -42,7 +48,7 @@ Cette application Web JEE permet de gérer une liste de patients, effectuer des 
 2. Recherche de patients : Vous pouvez entrer un mot-clé pour rechercher des patients par nom.
 3. Actions administratives : L'utilisateur avec le rôle ADMIN peut ajouter ou modifier ou supprimer des patients.
 
-## Capture d'écrans
+## 📸 Galerie d'écrans
 
 #### Page de connexion
 Voici à quoi ressemble la page de connexion :
