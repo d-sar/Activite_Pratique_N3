@@ -5,7 +5,7 @@
 
 ## Description
 
-Cette application Web JEE permet de gérer une liste de patients, effectuer des recherches par mot-clé, et exécuter des actions administratives telles que la suppression et l'édition des patients. Elle est basée sur Spring Boot, Spring MVC, Spring Data JPA, Thymeleaf, et utilise une base de données H2.
+Une application web complète pour la gestion des patients avec des fonctionnalités CRUD et un système d'authentification en mémoire.
 
 ## ✨Fonctionnalités
 
@@ -32,6 +32,24 @@ Cette application Web JEE permet de gérer une liste de patients, effectuer des 
 - **Base de données**:
   - ![H2](https://img.shields.io/badge/-H2_Database-1E6C93?logo=h2)
   - ![MySQL](https://img.shields.io/badge/-MySQL-4479A1?logo=mysql)
+  
+## 🔐 Authentification en Mémoire
+Le système utilise **Spring Security** avec une authentification en mémoire (in-memory) préconfigurée :
+    ```java
+        @Bean
+        public InMemoryUserDetailsManager userDetailsService() {
+          UserDetails admin = User.withUsername("admin")
+                  .password(passwordEncoder().encode("admin123"))
+                  .roles("ADMIN")
+                  .build();
+          
+          UserDetails user = User.withUsername("user")
+                  .password(passwordEncoder().encode("user123"))
+                  .roles("USER")
+                  .build();
+                  
+          return new InMemoryUserDetailsManager(admin, user);
+      }
 
 ## 🚀 Installation
 
