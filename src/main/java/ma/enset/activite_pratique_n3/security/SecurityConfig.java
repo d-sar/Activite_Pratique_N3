@@ -10,13 +10,23 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
+import org.springframework.security.provisioning.JdbcUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
+
+import javax.sql.DataSource;
 
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
+
     @Bean
-public InMemoryUserDetailsManager inMemoryUserDetailsManager(PasswordEncoder passwordEncoder){
+    public JdbcUserDetailsManager JdbcUserDetailsManager(DataSource dataSource) {
+        return new JdbcUserDetailsManager(dataSource);
+    }
+
+    //InMemomy Authentication
+   // @Bean
+    public InMemoryUserDetailsManager inMemoryUserDetailsManager(PasswordEncoder passwordEncoder){
     String encodedPassword = passwordEncoder.encode("1234");
     System.out.println(encodedPassword);
     return new InMemoryUserDetailsManager(
@@ -25,6 +35,7 @@ public InMemoryUserDetailsManager inMemoryUserDetailsManager(PasswordEncoder pas
             User.withUsername("admin").password(encodedPassword).roles("USER","ADMIN").build()
     );
 }
+
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
         return httpSecurity
