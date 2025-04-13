@@ -7,13 +7,15 @@
 
 - [📖 Description](#description)
 - [✨ Fonctionnalités](#fonctionnalités)
-- [🛠️ Technologies Utilisées](#Technologies-Utilisées)
-- [🔐 Authentification JDBC avec UserDetailsService](#authentification-jdbc-avec-userdetailsservice)
-- [🚀 Installation](#installation)
-- [⚙️ Utilisation](#utilisation)
-- [📸 Galerie d'écrans](#galerie-décrans)
-- [🗄️ Captures de la base de données](#captures-de-la-base-de-données)
-- [📚 Références](#références)
+- [🛠️ Technologies Utilisées](#-technologies-utilisées)
+- [🔐 Authentification en Mémoire](#-authentification-en-mémoire)
+- [🔐 JDBC Authentication](#jdbc-authentication)
+- [🔐 Authentification JDBC avec UserDetailsService](#-authentification-jdbc-avec-userdetailsservice)
+- [🚀 Installation](#-installation)
+- [⚙️ Utilisation](#usage)
+- [📸 Galerie d'écrans](#-galerie-décrans)
+- [🗄️ Captures de la base de données](#-captures-de-la-base-de-données)
+- [📚 Références](#-références)
 
 
 ## Description
