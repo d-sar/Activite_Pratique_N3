@@ -36,7 +36,7 @@ public class AccountServiceImp implements AccountService {
     }
 
     @Override
-    public AppUser addNewRole(String role) {
+    public AppRole addNewRole(String role) {
         AppRole appRole=appRoleRepository.findById(role).orElse(null) ;
         if(appRole!=null) throw new RuntimeException("This role already exists");
         appRole = AppRole.builder()

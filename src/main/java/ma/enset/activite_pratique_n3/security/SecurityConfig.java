@@ -1,5 +1,7 @@
 package ma.enset.activite_pratique_n3.security;
 
+import lombok.AllArgsConstructor;
+import ma.enset.activite_pratique_n3.security.service.UserDetailServiceImp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -17,10 +19,13 @@ import javax.sql.DataSource;
 
 @Configuration
 @EnableWebSecurity
+@AllArgsConstructor
 public class SecurityConfig {
 
+    private UserDetailServiceImp userDetailServiceImp;
+
     //JDBC Authentication
-    @Bean
+    //@Bean
     public JdbcUserDetailsManager JdbcUserDetailsManager(DataSource dataSource) {
         return new JdbcUserDetailsManager(dataSource);
     }
@@ -52,6 +57,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests(ar -> ar.requestMatchers("/user/**").hasRole("USER"))
                 .authorizeHttpRequests(ar -> ar.anyRequest().authenticated())
                 .exceptionHandling(eh -> eh.accessDeniedPage("/NotAuthorized"))
+                .userDetailsService(userDetailServiceImp)
                 .build();
     }
 

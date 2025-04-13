@@ -3,6 +3,7 @@ package ma.enset.activite_pratique_n3;
 import lombok.Data;
 import ma.enset.activite_pratique_n3.entities.Patient;
 import ma.enset.activite_pratique_n3.repository.PatientRepository;
+import ma.enset.activite_pratique_n3.security.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -39,7 +40,7 @@ public class ActivitePratiqueN3Application  implements CommandLineRunner {
         return new BCryptPasswordEncoder();
     }
 // jdbc Authentication
-    @Bean
+   // @Bean
     CommandLineRunner commandLineRunner(JdbcUserDetailsManager jdbcUserDetailsManager) {
         PasswordEncoder passwordEncoder = passwordEncoder();
         return args -> {
@@ -59,6 +60,18 @@ public class ActivitePratiqueN3Application  implements CommandLineRunner {
                 jdbcUserDetailsManager.createUser(
                     User.withUsername("admin1").password(passwordEncoder.encode("1234")).roles("ADMIN","USER").build());
 
+        };
+    }
+    // utilisation des methode personaliser
+    //@Bean
+    CommandLineRunner commandLineRunnerUserDetails(AccountService accountService){
+        return args -> {
+            accountService.addNewRole("USER");
+            accountService.addNewRole("ADMIN");
+            accountService.addNewUser("user1Details","1234","user1@gmail.com","1234");
+            accountService.addNewUser("user2Details","1234","user2@gmail.com","1234");
+            accountService.addRoleToUser("user1Details","USER");
+            accountService.addRoleToUser("user2Details","ADMIN");
         };
     }
 }
