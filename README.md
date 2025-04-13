@@ -3,6 +3,19 @@
 ![Java](https://img.shields.io/badge/Java-23-blue?logo=java)
 ![Thymeleaf](https://img.shields.io/badge/Thymeleaf-3.1-white?logo=thymeleaf)
 
+## 📌 Sommaire
+
+- [📖 Description](#description)
+- [✨ Fonctionnalités](#fonctionnalités)
+- [🛠️ Technologies Utilisées](#Technologies-Utilisées)
+- [🔐 Authentification JDBC avec UserDetailsService](#authentification-jdbc-avec-userdetailsservice)
+- [🚀 Installation](#installation)
+- [⚙️ Utilisation](#utilisation)
+- [📸 Galerie d'écrans](#galerie-décrans)
+- [🗄️ Captures de la base de données](#captures-de-la-base-de-données)
+- [📚 Références](#références)
+
+
 ## Description
 
 Une application web complète pour la gestion des patients avec des fonctionnalités CRUD et un système d'authentification en mémoire.
@@ -18,7 +31,7 @@ Une application web complète pour la gestion des patients avec des fonctionnali
 | ➕ Ajout | Création de nouveaux dossiers | Rôle ADMIN |
 | 🔐 Sécurité | Authentification et autorisation | Spring Security |
   
-## 🛠️ Technologies Utilisées
+## 🛠️ Technologies-Utilisées
 
 - **Backend**: 
   - ![Spring Boot](https://img.shields.io/badge/-Spring_Boot_3-6DB33F?logo=springboot)
@@ -45,6 +58,33 @@ Le système utilise **Spring Security** avec une authentification en mémoire (i
               User.withUsername("admin").password(encodedPassword).roles("USER","ADMIN").build()
           );
         }
+## 🔐JDBC Authentication
+
+        @Bean
+        public JdbcUserDetailsManager JdbcUserDetailsManager(DataSource dataSource) {
+            return new JdbcUserDetailsManager(dataSource);
+        }
+
+## 🔐 Authentification JDBC avec UserDetailsService
+L’application utilise une implémentation personnalisée de `UserDetailsService` pour récupérer les utilisateurs depuis une base de données via JPA :
+
+        @Service
+        @AllArgsConstructor
+        public class UserDetailServiceImp implements UserDetailsService {
+            AccountService accountService;
+            @Override
+            public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+                AppUser appUser =accountService.loadUserByUsername(username);
+                if (appUser == null) throw new UsernameNotFoundException(String.format("User %s not found", username));
+                String[] roles = appUser.getRoles().stream().map(u->u.getRole()).toArray(String[]::new);
+                UserDetails userDetails = User
+                    .withUsername(appUser.getUsername())
+                    .password(appUser.getPassword())
+                    .roles(roles).build();
+            return userDetails;
+            }
+        }
+
 ## 🚀 Installation
 
 1. Clonez ce dépôt sur votre machine locale :
@@ -77,3 +117,28 @@ Les utilisateurs ayant le rôle ADMIN peuvent supprimer un patient de la liste. 
 #### Édition d'un patient
 Les utilisateurs ADMIN peuvent également modifier les informations d'un patient en cliquant sur le bouton "EDIT".
 ![img_5.png](img_5.png)
+
+## 🗄️ Captures de la base de données
+
+Voici un aperçu des tables principales dans MySQL :
+
+####  Table app_user
+![img_6.png](img_6.png)
+
+####  Table app_role
+![img_7.png](img_7.png)
+
+####  Table app_user_roles (relation plusieurs-à-plusieurs)
+![img_8.png](img_8.png)
+
+####  Table patient
+![img_9.png](img_9.png)
+
+
+## 📚 Références
+Spring Security - Documentation
+
+Spring Data JPA - Reference Guide
+
+Spring Boot - Official Site
+
