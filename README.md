@@ -144,3 +144,7 @@ Spring Data JPA - Reference Guide
 
 Spring Boot - Official Site
 
+## 📇 À propos du développeur
+Ce projet a été développé par [Sara](https://github.com/d-sar) dans le cadre d’un exercice pratique d’implémentation de Spring Boot avec sécurisation via Spring Security et gestion JDBC des utilisateurs.
+
+💼[LinkedIn](https://www.linkedin.com/in/damri-sara-897137274/)
