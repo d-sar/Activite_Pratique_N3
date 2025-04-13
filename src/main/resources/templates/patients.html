@@ -42,12 +42,12 @@
                     <td th:if="${#authorization.expression('hasRole(''ADMIN'')')}">
                         <a onclick="return confirm('Êtes-vous sûr ?')"
                            th:href="@{/admin/delete(id=${p.id}, keyword=${keyword}, page=${currentPage})}"
-                           class="btn btn-danger btn-sm">Supprimer</a>
+                           class="btn btn-danger btn-sm"> <i class="bi bi-trash"></i>Supprimer</a>
                     </td>
                     <td th:if="${#authorization.expression('hasRole(''ADMIN'')')}">
                         <a  class="btn btn-danger"
                             th:href="@{/admin/editPatient(id=${p.id})}">
-                            <i class="bi bi-pencil">EDIT</i>
+                            <i class="bi bi-pencil-square"></i>EDIT
                         </a>
                     </td>
 

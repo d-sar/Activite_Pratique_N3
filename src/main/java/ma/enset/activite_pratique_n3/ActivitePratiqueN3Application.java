@@ -9,8 +9,11 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.data.repository.Repository;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.provisioning.JdbcUserDetailsManager;
 
 
 import java.sql.DatabaseMetaData;
@@ -34,5 +37,28 @@ public class ActivitePratiqueN3Application  implements CommandLineRunner {
     PasswordEncoder passwordEncoder(){
 
         return new BCryptPasswordEncoder();
+    }
+// jdbc Authentication
+    @Bean
+    CommandLineRunner commandLineRunner(JdbcUserDetailsManager jdbcUserDetailsManager) {
+        PasswordEncoder passwordEncoder = passwordEncoder();
+        return args -> {
+
+            UserDetails u1= jdbcUserDetailsManager.loadUserByUsername("user3");
+            if(u1==null)
+                 jdbcUserDetailsManager.createUser(
+                    User.withUsername("user3").password(passwordEncoder.encode("1234")).roles("USER").build());
+
+            UserDetails u3= jdbcUserDetailsManager.loadUserByUsername("user4");
+            if(u3==null)
+                jdbcUserDetailsManager.createUser(
+                    User.withUsername("user4").password(passwordEncoder.encode("1234")).roles("USER").build());
+
+            UserDetails admin= jdbcUserDetailsManager.loadUserByUsername("admin1");
+            if(admin==null)
+                jdbcUserDetailsManager.createUser(
+                    User.withUsername("admin1").password(passwordEncoder.encode("1234")).roles("ADMIN","USER").build());
+
+        };
     }
 }

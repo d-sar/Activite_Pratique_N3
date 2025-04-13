@@ -19,6 +19,7 @@ import javax.sql.DataSource;
 @EnableWebSecurity
 public class SecurityConfig {
 
+    //JDBC Authentication
     @Bean
     public JdbcUserDetailsManager JdbcUserDetailsManager(DataSource dataSource) {
         return new JdbcUserDetailsManager(dataSource);
@@ -45,6 +46,7 @@ public class SecurityConfig {
                         .defaultSuccessUrl("/user/index", true)
                 )
                 .authorizeHttpRequests(ar-> ar.requestMatchers("/webjars/**").permitAll())
+                .authorizeHttpRequests(ar-> ar.requestMatchers("user/index").permitAll())
                 .authorizeHttpRequests(ar -> ar.requestMatchers("/deletePatient/**").hasRole("ADMIN"))
                 .authorizeHttpRequests(ar -> ar.requestMatchers("/admin/**").hasRole("ADMIN"))
                 .authorizeHttpRequests(ar -> ar.requestMatchers("/user/**").hasRole("USER"))
